@@ -1,0 +1,8 @@
+aws_credentials
+environments/*/terraform.tfvars
+environments/*/.terraform
+*.sw?
+*.out
+*.pem
+*.ppk
+
