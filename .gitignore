@@ -6,3 +6,4 @@ environments/*/.terraform
 *.pem
 *.ppk
 
+*.hcl
