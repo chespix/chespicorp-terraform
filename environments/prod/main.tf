@@ -2,7 +2,7 @@ terraform {
   backend "remote" {
     organization = "chespi-corp"
     workspaces {
-      name = "Example-Workspace"
+      name = "ChespiCorp-prod"
     }
   }
   required_providers {

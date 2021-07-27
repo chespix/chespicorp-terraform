@@ -1,4 +1,11 @@
 terraform {
+  backend "remote" {
+    organization = "chespi-corp"
+    workspaces {
+      name = "ChespiCorp-dev"
+    }
+  }
+
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
