@@ -1,30 +1,26 @@
 terraform {
-  backend "remote" {
-    organization = "chespi-corp"
-    workspaces {
-      name = "Example-Workspace"
-    }
-  }
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.27"
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = ">= 2.13.0"
     }
   }
-
-  required_version = ">= 0.14.9"
 }
 
-provider "aws" {
-  profile = "default"
-  region  = "us-east-2"
+provider "docker" {
+  host    = "npipe:////.//pipe//docker_engine"
 }
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-046cfe1f8332fd5f2"
-  instance_type = "t2.micro"
+resource "docker_image" "nginx" {
+  name         = "nginx:latest"
+  keep_locally = false
+}
 
-  tags = {
-    Name = var.instance_name
+resource "docker_container" "nginx" {
+  image = docker_image.nginx.latest
+  name  = "tutorial"
+  ports {
+    internal = 80
+    external = 8000
   }
 }
